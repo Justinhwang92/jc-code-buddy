@@ -2,13 +2,9 @@ from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 
-information = """
-  Elon Musk is the CEO of electric-vehicle maker Tesla, whose board he joined in 2004. During his nearly two decades there, the company has grown to be the global leader in EVs and world’s most valuable car company. Musk is also CEO and founder of SpaceX, and in 2022, he purchased Twitter for $44 billion. The entrepreneur, one of the world’s wealthiest people, has also launched other ventures including Neuralink, a brain-computer startup and Boring Co., a tunneling company. More recently he has incorporated a company called X.AI as part of efforts to steer development of artificial intelligence.
-"""
+from third_parties.linkedIn import scrape_linkedin_profile
 
 if __name__ == "__main__":
-    print("Hello, LangChain!")
-
     summary_template = """
       Given the information {information} about a person from I want you to create:
       1. a short summary
@@ -22,5 +18,8 @@ if __name__ == "__main__":
     llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
 
     chain = LLMChain(llm=llm, prompt=summary_prompt_template)
+    # linkedin_data = scrape_linkedin_profile(
+    #     linkedin_profile_url='https://www.linkedin.com/in/soonkwon-hwang-22390a178/')
+    linkedin_data = scrape_linkedin_profile(name='eden-marco')
 
-    print(chain.run(information=information))
+    print(chain.run(information=linkedin_data))
