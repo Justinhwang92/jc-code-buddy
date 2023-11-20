@@ -4,8 +4,13 @@ import json
 import requests
 
 
-def scrape_linkedin_profile(name="eden-marco"):
-    fname = f"{name}.json"
+def scrape_linkedin_profile(linkedin_profile_url="soonkwon-hwang-22390a178"):
+    if linkedin_profile_url != "soonkwon-hwang-22390a178":
+        with open("soonkwon-hwang-22390a178.json", "r") as fh:
+            str = fh.read()
+            return json.loads(str)
+
+    fname = f"{linkedin_profile_url}.json"
     if os.path.isfile(fname):
         with open(fname, "r") as fh:
             str = fh.read()
@@ -42,9 +47,10 @@ def scrape_linkedin_profile(name="eden-marco"):
     return resp.json()
 
 
-# def scrape_linkedin_profile(linkedin_profile_url: str):
+# def scrape_linkedin_profile(linkedin_profile_url: str) -> any:
 #     """scrape information from LinkedIn profiles,
 #     Manually scrape the information from the LinkedIn profile"""
+
 #     api_endpoint = "https://nubela.co/proxycurl/api/v2/linkedin"
 #     header_dic = {
 #         "Authorization": f'Bearer {os.environ.get("PROXYCURL_API_KEY")}'}

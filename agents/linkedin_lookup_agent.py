@@ -1,6 +1,8 @@
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.agents import initialize_agent, Tool, AgentType
+
+from tools.tools import get_profile_url
 
 
 def lookup(name: str) -> str:
@@ -10,7 +12,7 @@ def lookup(name: str) -> str:
     tools_for_agent = [
         Tool(
             name="Crawl Google for Linkedin profile page",
-            func="?",
+            func=get_profile_url,
             description="useful for when you need to get the Linkedin Page URL",
         ),
     ]
