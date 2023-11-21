@@ -5,7 +5,9 @@ import requests
 
 
 def scrape_linkedin_profile(linkedin_profile_url="soonkwon-hwang-22390a178"):
-    if linkedin_profile_url != "soonkwon-hwang-22390a178":
+    if linkedin_profile_url != "soonkwon-hwang-22390a178" and os.path.isfile(
+        "soonkwon-hwang-22390a178.json"
+    ):
         with open("soonkwon-hwang-22390a178.json", "r") as fh:
             str = fh.read()
             return json.loads(str)
