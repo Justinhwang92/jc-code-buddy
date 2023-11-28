@@ -1,6 +1,7 @@
+from typing import List
+
 from langchain.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
-from typing import List
 
 
 class PersonIntel(BaseModel):
@@ -22,6 +23,4 @@ class PersonIntel(BaseModel):
         }
 
 
-person_intel_parsers: PydanticOutputParser = PydanticOutputParser(
-    pydantic_object=PersonIntel
-)
+person_intel_parsers = PydanticOutputParser(pydantic_object=PersonIntel)
